@@ -3,6 +3,13 @@ body {
   padding-top: 54px;
   color: #868e96;
 }
+img{
+  border:2px solid #fff;
+}
+img:hover{
+  border:2px solid #F4E8E8 ;
+  transition: 0.5s;
+}
 .code{
   padding: 10px;
   background-color:#F4E8E8 !important;
