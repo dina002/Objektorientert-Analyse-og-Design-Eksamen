@@ -3,7 +3,15 @@ body {
   padding-top: 54px;
   color: #868e96;
 }
-
+.code{
+  padding: 10px;
+  background-color:#F4E8E8 !important;
+  min-width: 250px;
+  border-radius: 5px;
+}
+.mb-5{
+  margin-bottom:20px !important;
+}
 @media (min-width: 992px) {
   body {
     padding-top: 0;

@@ -21,7 +21,7 @@
     <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/resume.min.css" rel="stylesheet">
+    <link href="css/resume.css" rel="stylesheet">
 
   </head>
 
@@ -40,7 +40,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#about">UØVEDE</a>
+            <a class="nav-link js-scroll-trigger" href="#about">UØVDE</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#experience">ØVEDE</a>
@@ -50,6 +50,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="#skills">Employee eksempel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="model.svg">EmployeeModel.svg</a>
           </li>
         </ul>
       </div>
@@ -62,13 +65,42 @@
           <!--<h1 class="mb-0">ABSTRACT
             <span class="text-primary">TABLEMODEL</span>
           </h1> -->
-          <h2 class="mb-5">Abstracttablemodel for uøvede</h2>
+          <h2 class="mb-5">AbstractTablemodel for uøvde</h2>
 
-          <p class="mb-5">What is Lorem Ipsum?
-Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+          <p class="mb-5">AbstractTableModel er en klasse som oppfører seg som en beholder av alle enhetene i tablemodel, på en måte.
+Klassen AbstractTableModel er abstrakt fordi den implementerer TableModel, som er et interface, uten å oppfylle hele kontrakten. Dette betyr altså at en ny spesialisering av AbstractTableModel må oppfylle resten av kontrakten for denne.</p>
 
-Why do we use it?
-It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+<div class="subheading mb-3">Tre av metodene i AbstractTableModel er abstrakte</div>
+<p class="mb-5"><div class="code">public int getRowCount();</div><br>
+<div class="code">public int getColumnCount();</div><br>
+<div class="code">public Object getValueAt(int row, int column);</div></p>
+
+<p class="mb-5">Disse må defineres og kan gjøres slik:<br>
+En lokal Arraylist med navnene for dataradene kan benyttes. Det lokale lageret kalles cache.
+getRowCount () trenger derfor kun å returnere størrelsen på cache objektet slik:
+<div class="code">
+public int getRowCount(){<br>
+	return cache.size();<br>
+}</div></p>
+<p class="mb-5">getColoumnCount() metoden returnerer hvor mange kolonner det finnes i tabellstrukturen. Som det her:<br>
+<div class="code">public int getColoumnCount(){<br>
+return colnames.size();<br>
+}</div></p>
+<p class="mb-5">getValueAt() funksjonen returnerer antall kolonner og rader som det her:</p><br>
+<p class="code">public Object getValueAt(int row,int col){<br>
+  return data[row][col];<br>
+}</p>
+
+<p class="mb-5">JTable bruker disse metodene til å finne ut hvor mange felt(rader og kolonner) det er, og henter verdiene( som et type objekt) av hvert felt.  getValueAt benyttes for å hente ut antall rader og kolonner og returnerer dette.</p>
+
+<p class="mb-5">Disse to metodene danner sammen en god løsning som gir den utvidede AbstractTableModel to datastrukturer som er enkle å håndtere. Man kan da sette objektet inn i et JTable-objekt. Rammeverket bruker da getColoumnCount() og getRowCount() til å fylle ut dataen i rader og kolonner.
+Hvis det da ønskes, kan kolonne-navnene redigeres ved hjelp av å overstyre getColoumnName()-metoden. Hvis denne metoden overstyres utnytter rammeverket dette til å vise kolonnenavnene i JTable-objektet.</p>
+
+<p class="mb-5">Første linjen definerer kolonnenavnene, i dette tilfellet “user”, “password” og “age”. Den andre linjen returnerer kolonnenavnene i getColumnName metoden og setter navnene i JTable. De to kodelinjene under er de som snakkes om.</p>
+
+<p class="code">private static final String[] COLUMN_NAMES = {"User", "Password", "Age"};<br>
+public String getColumnName(int col) { return COLUMN_NAMES[col]; }</p>
+</p>
 
         </div>
       </section>
