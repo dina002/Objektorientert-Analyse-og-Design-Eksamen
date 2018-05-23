@@ -29,9 +29,9 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
       <a class="navbar-brand js-scroll-trigger" href="#page-top">
-        <span class="d-block d-lg-none">Start Bootstrap</span>
+        <span class="d-block d-lg-none">AbstractTableModel</span>
         <span class="d-none d-lg-block">
-          <img class="img-fluid img-profile rounded-circle mx-auto mb-2" src="http://idolize.co.in/img/j2se.png" alt="">
+          <img class="img-fluid img-profile rounded-circle mx-auto mb-2 opa" src="http://idolize.co.in/img/j2se.png" alt="">
         </span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -112,40 +112,44 @@ public String getColumnName(int col) { return COLUMN_NAMES[col]; }</p>
             <div class="resume-content mr-auto">
               <h3 class="mb-0">OVERSKRIFT 1</h3>
               <div class="subheading mb-3">UNDERTITTEL</div>
-              <p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>
+              <p class="mb-5">Et eksempel på bruk av AbstractTableModel:</p>
+
+              <p class="mb-5">void setValueAt(Object aValue, int rowIndex, int columnIndex) { //depending on your data structure add the aValue object
+                to the specified //rowIndex and columnIndex position in your data object //notify the JTable object: fireTableCellUpdated(row, col); }</p>
+
+              <p class="mb-5">For å slippe å implementere alle metodene til TableModel, kan vi utvide interfacet(extends) ved å legge til AbstractTableModel. Ved å gjøre dette trenger vi i teorien bare å implementere tre metoder<br>
+              ·         En metode som returnerer antallet rader<br>
+              ·         En metode som returnerer antallet kolonner<br>
+              ·         En metode som returnerer verdien som hører til en celle.</p>
+
+              <p class="mb-5">Under ser vi et eksempel på implementasjon som viser et antall ansatte med et brukergrensesnitt basert på Swing. Vi lager TableModel som tilpasser seg en matrise av ansatte.</p>
+              <a><img src="img/employee.png"></a>
+              <p class="mb-5">Vi lager først et objekt Employee med tilhørende metoder<br>
+              <div class="code">public class Employee {<br>
+                private int id;<br>private String name;<br>private string surName;<br>private int age<br>private int salary<br>
+              }</div></p>
+              <p class="mb-5">Så bygger vi opp TableModel klassen med metodene til AbstractTableModel. Dataene fra objektet lagres i dette tilfellet i en Vector, som er en matrise av objekter. Innholdet i en Vector kan hentes ut ved å bruke en index.</p>
+              <p class="mb-5">Vi definerer her hva som skal være overskriften i hver celle i tabellen i tillegg til Vector.
+                <div class="code">public class TableModel extends AbstractTableModel {<br>
+                  private static final long serialVersionUID = 1L;<br>
+                  public String[] = m_colNames = { "ID" , "Name", "Surname", "Age", "Salary" };<br>
+                  public Class[] m_colTypes = { Integer.class, String.class, String.class, Integer.class, Integer.class};<br>
+                  Vector<?> mDataVector;<br>
+                }</div></p>
+                <p class="mb-5">Set og Get metodene kan være som følger:<br>
+                  <div class="code">
+                  public void setValueAt(Object value, int row, int col){<br>
+                    Employee employeeData = (Employee) (m_DataVector.elementAt(row));
+                  }</div>
+                  <div class="code">
+                  public Object getValueAt(int row, int col){
+                    Employee employeeData = (Employee) (m_DataVector.elementAt(row));
+                  }
+                  </div>
+                </p>
+
             </div>
 
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">OVERSKRIFT 2</h3>
-              <div class="subheading mb-3">UNDERTITTEL</div>
-              <p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>
-            </div>
-
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row mb-5">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Junior Web Designer</h3>
-              <div class="subheading mb-3">Shout! Media Productions</div>
-              <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality to derive convergence on cross-platform integration.</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">July 2010 - December 2011</span>
-            </div>
-          </div>
-
-          <div class="resume-item d-flex flex-column flex-md-row">
-            <div class="resume-content mr-auto">
-              <h3 class="mb-0">Web Design Intern</h3>
-              <div class="subheading mb-3">Shout! Media Productions</div>
-              <p>Collaboratively administrate empowered markets via plug-and-play networks. Dynamically procrastinate B2C users after installed base benefits. Dramatically visualize customer directed convergence without revolutionary ROI.</p>
-            </div>
-            <div class="resume-date text-md-right">
-              <span class="text-primary">September 2008 - June 2010</span>
-            </div>
           </div>
 
         </div>

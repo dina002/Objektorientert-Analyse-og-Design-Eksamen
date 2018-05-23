@@ -9,6 +9,9 @@ body {
   min-width: 250px;
   border-radius: 5px;
 }
+.opa:hover{
+  opacity: 0.9;
+}
 .mb-5{
   margin-bottom:20px !important;
 }
