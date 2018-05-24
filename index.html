@@ -70,25 +70,25 @@
 Klassen AbstractTableModel er abstrakt fordi den implementerer TableModel, som er et interface, uten å oppfylle hele kontrakten. Dette betyr altså at en ny spesialisering av AbstractTableModel må oppfylle resten av kontrakten for denne.</p>
 
 <div class="subheading mb-3">Tre av metodene i AbstractTableModel er abstrakte</div>
-<p class="mb-5"><div class="code">public int getRowCount();</div><br>
-<div class="code">public int getColumnCount();</div><br>
-<div class="code">public Object getValueAt(int row, int column);</div></p>
+<p class="mb-5"><div class="code"><pre>public int getRowCount();
+public int getColumnCount();
+public Object getValueAt(int row, int column);</pre></div></p>
 
 <p class="mb-5">Disse må defineres og kan gjøres slik:<br>
 En lokal Arraylist med navnene for dataradene kan benyttes. Det lokale lageret kalles cache.
 getRowCount () trenger derfor kun å returnere størrelsen på cache objektet slik:
-<div class="code">
+<div class="code"><pre>
 public int getRowCount(){<br>
 	return cache.size();<br>
-}</div></p>
+}</pre></div></p>
 <p class="mb-5">getColoumnCount() metoden returnerer hvor mange kolonner det finnes i tabellstrukturen. Som det her:<br>
-<div class="code">public int getColoumnCount(){<br>
-return colnames.size();<br>
+<div class="code"><pre>public int getColoumnCount(){
+return colnames.size();</pre>
 }</div></p>
-<p class="mb-5">getValueAt() funksjonen returnerer antall kolonner og rader som det her:</p><br>
-<p class="code">public Object getValueAt(int row,int col){<br>
-  return data[row][col];<br>
-}</p>
+<p class="mb-5">getValueAt() funksjonen returnerer antall kolonner og rader som det her:</p>
+<div class="code"><pre>public Object getValueAt(int row,int col){<br>
+  return data[row][col];</pre><br>
+}</div>
 
 <p class="mb-5">JTable bruker disse metodene til å finne ut hvor mange felt(rader og kolonner) det er, og henter verdiene( som et type objekt) av hvert felt.  getValueAt benyttes for å hente ut antall rader og kolonner og returnerer dette.</p>
 
@@ -97,8 +97,8 @@ Hvis det da ønskes, kan kolonne-navnene redigeres ved hjelp av å overstyre get
 
 <p class="mb-5">Første linjen definerer kolonnenavnene, i dette tilfellet “user”, “password” og “age”. Den andre linjen returnerer kolonnenavnene i getColumnName metoden og setter navnene i JTable. De to kodelinjene under er de som snakkes om.</p>
 
-<p class="code">private static final String[] COLUMN_NAMES = {"User", "Password", "Age"};<br>
-public String getColumnName(int col) { return COLUMN_NAMES[col]; }</p>
+<div class="code"><pre>private static final String[] COLUMN_NAMES = {"User", "Password", "Age"};<br>
+public String getColumnName(int col) { return COLUMN_NAMES[col]; }</pre></div>
 </p>
 
         </div>
@@ -155,30 +155,30 @@ public String getColumnName(int col) { return COLUMN_NAMES[col]; }</p>
           <p class="mb-5">Under ser vi et eksempel på implementasjon som viser et antall ansatte med et brukergrensesnitt basert på Swing. Vi lager TableModel som tilpasser seg en matrise av ansatte.</p>
           <a href="svg/Diagram.svg"><img src="img/employee.png"></a>
           <p class="mb-5">Vi lager først et objekt Employee med tilhørende metoder<br>
-          <div class="code">public class Employee {<br>
+          <div class="code"><pre>public class Employee {<br>
             private int id;<br>private String name;<br>private string surName;<br>private int age<br>private int salary<br>
-          }</div></p>
+          }</pre></div></p>
           <p class="mb-5">Så bygger vi opp TableModel klassen med metodene til AbstractTableModel. Dataene fra objektet lagres i dette tilfellet i en Vector, som er en matrise av objekter. Innholdet i en Vector kan hentes ut ved å bruke en index.</p>
           <p class="mb-5">Vi definerer her hva som skal være overskriften i hver celle i tabellen i tillegg til Vector.
-            <div class="code">public class TableModel extends AbstractTableModel {<br>
+            <div class="code"><pre>public class TableModel extends AbstractTableModel {<br>
               private static final long serialVersionUID = 1L;<br>
               public String[] = m_colNames = { "ID" , "Name", "Surname", "Age", "Salary" };<br>
               public Class[] m_colTypes = { Integer.class, String.class, String.class, Integer.class, Integer.class};<br>
               Vector<?> mDataVector;<br>
-            }</div></p>
+            }</pre></div></p>
             <p class="mb-5">Set og Get metodene kan være som følger:<br>
-              <div class="code">
+              <div class="code"><pre>
               public void setValueAt(Object value, int row, int col){<br>
                 Employee employeeData = (Employee) (m_DataVector.elementAt(row));
-              }</div>
-              <div class="code">
+              }</pre></div>
+              <div class="code"><pre>
               public Object getValueAt(int row, int col){
                 Employee employeeData = (Employee) (m_DataVector.elementAt(row));
               }
-              </div>
+            </pre></div>
             </p>
             <p class="mb-5">Vi instansierer objektet i Entry point og får resultat<br>
-              <div class="code">
+              <div class="code"><pre>
                 public class Main extends JFrame {<br>
                   private static final long serialVersionUID = 1L;<br>
                   private TableModel model;<br>
@@ -192,7 +192,7 @@ public String getColumnName(int col) { return COLUMN_NAMES[col]; }</p>
                     table = new JTable(model);<br>
                   }<br>
                 }<br>
-              </div>
+              </pre></div>
             </p>
             <p class="mb-5">Modellen kan utvides til å inkludere persistens på objektet. Objektene kan lagres eller hentes fra et lager som for eksempel en relasjonell database. Persistensen kan legges i en kontrollklasse som vil være ansvarlig for endringene i tilstand i programmet.</p>
             <a href="svg/persistens.svg"><img src="img/persistent.png"></a>
