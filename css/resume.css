@@ -21,6 +21,7 @@ img:hover{
 }
 .mb-5{
   margin-bottom:20px !important;
+  max-width: 50%;
 }
 @media (min-width: 992px) {
   body {

@@ -155,45 +155,31 @@ public String getColumnName(int col) { return COLUMN_NAMES[col]; }</pre></div>
           <p class="mb-5">Under ser vi et eksempel på implementasjon som viser et antall ansatte med et brukergrensesnitt basert på Swing. Vi lager TableModel som tilpasser seg en matrise av ansatte.</p>
           <a href="svg/Diagram.svg"><img src="img/employee.png"></a>
           <p class="mb-5">Vi lager først et objekt Employee med tilhørende metoder<br>
-          <div class="code"><pre>public class Employee {<br>
-            private int id;<br>private String name;<br>private string surName;<br>private int age<br>private int salary<br>
-          }</pre></div></p>
+          <div class="code">
+            <pre>public class Employee {
+            <br>private int id;<br>private String name;<br>private string surName;<br>private int age<br>private int salary<br><br>}</pre>
+          </div>
+        </p>
           <p class="mb-5">Så bygger vi opp TableModel klassen med metodene til AbstractTableModel. Dataene fra objektet lagres i dette tilfellet i en Vector, som er en matrise av objekter. Innholdet i en Vector kan hentes ut ved å bruke en index.</p>
-          <p class="mb-5">Vi definerer her hva som skal være overskriften i hver celle i tabellen i tillegg til Vector.
-            <div class="code"><pre>public class TableModel extends AbstractTableModel {<br>
-              private static final long serialVersionUID = 1L;<br>
-              public String[] = m_colNames = { "ID" , "Name", "Surname", "Age", "Salary" };<br>
-              public Class[] m_colTypes = { Integer.class, String.class, String.class, Integer.class, Integer.class};<br>
-              Vector<?> mDataVector;<br>
-            }</pre></div></p>
-            <p class="mb-5">Set og Get metodene kan være som følger:<br>
-              <div class="code"><pre>
-              public void setValueAt(Object value, int row, int col){<br>
-                Employee employeeData = (Employee) (m_DataVector.elementAt(row));
-              }</pre></div>
-              <div class="code"><pre>
-              public Object getValueAt(int row, int col){
-                Employee employeeData = (Employee) (m_DataVector.elementAt(row));
-              }
-            </pre></div>
-            </p>
-            <p class="mb-5">Vi instansierer objektet i Entry point og får resultat<br>
-              <div class="code"><pre>
-                public class Main extends JFrame {<br>
-                  private static final long serialVersionUID = 1L;<br>
-                  private TableModel model;<br>
-                  private JTable table;<br><br>
-
-                  public Main() {<br>
-                    Vector&ltEmployee&gt testData = new Vector&ltEmployee&gt(10, 10);<br>
-                    testData.addElement(new Employee(new Integer(1), "Test", "Testen",(new Integer(25)), (new Integer(100000))));<br>
-                    testData.addElement(new Employee(new Integer(2), "K", "R",(new Integer(40)), (new Integer(350000))));<br>
-                    model = new TableModel(testData);<br>
-                    table = new JTable(model);<br>
-                  }<br>
-                }<br>
-              </pre></div>
-            </p>
+          <p class="mb-5">
+            Vi definerer her hva som skal være overskriften i hver celle i tabellen i tillegg til Vector.
+          </p>
+            <div class="code">
+              <pre>public class TableModel extends AbstractTableModel {<br>private static final long serialVersionUID = 1L;<br>public String[] = m_colNames = { "ID" , "Name", "Surname", "Age", "Salary" };<br>public Class[] m_colTypes = { Integer.class, String.class, String.class, Integer.class, Integer.class};<br>Vector<?> mDataVector;<br>}
+              </pre>
+            </div><br><br>
+            <p class="mb-5">Set og Get metodene kan være som følger:</p><br>
+              <div class="code">
+                <pre>public void setValueAt(Object value, int row, int col){<br>Employee employeeData = (Employee) (m_DataVector.elementAt(row));<br>}</pre>
+              </div>
+              <div class="code">
+                <pre>public Object getValueAt(int row, int col){<br>Employee employeeData = (Employee) (m_DataVector.elementAt(row));<br>}</pre>
+              </div><br><br>
+            <p class="mb-5">Vi instansierer objektet i Entry point og får resultat</p><br>
+              <div class="code">
+                <pre>public class Main extends JFrame {<br>private static final long serialVersionUID = 1L;<br>private TableModel model;<br>private JTable table;<br><br></pre>
+                <pre>public Main() {<br>Vector&ltEmployee&gt testData = new Vector&ltEmployee&gt(10, 10);<br>testData.addElement(new Employee(new Integer(1), "Test", "Testen",(new Integer(25)), (new Integer(100000))));<br>testData.addElement(new Employee(new Integer(2), "K", "R",(new Integer(40)), (new Integer(350000))));<br>model = new TableModel(testData);<br>table = new JTable(model);<br>}<br>}<br></pre>
+              </div><br>
             <p class="mb-5">Modellen kan utvides til å inkludere persistens på objektet. Objektene kan lagres eller hentes fra et lager som for eksempel en relasjonell database. Persistensen kan legges i en kontrollklasse som vil være ansvarlig for endringene i tilstand i programmet.</p>
             <a href="svg/persistens.svg"><img src="img/persistent.png"></a>
             <p class="mb-5">Målet er at Control-metoden inneholder alle opplysninger om ansatte, inkludert underklasser. Control.control.getAllEmployees(). Denne forteller Employee objektet om å gi all informasjon om seg selv, FullTimeEmployee og PartTimeEmployee.</p>
