@@ -5,6 +5,7 @@ body {
 }
 img{
   border:2px solid #fff;
+  max-width: 500px;
 }
 img:hover{
   border:2px solid #F4E8E8 ;
