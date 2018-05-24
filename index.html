@@ -46,10 +46,10 @@
             <a class="nav-link js-scroll-trigger" href="#experienced">ØVEDE</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#svg">SVG-Filer</a>
+            <a class="nav-link js-scroll-trigger" href="#eksempel">Eksempel</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="#eksempel">Employee eksempel</a>
+            <a class="nav-link js-scroll-trigger" href="#svg">SVG-Filer</a>
           </li>
         </ul>
       </div>
@@ -63,43 +63,42 @@
             <span class="text-primary">TABLEMODEL</span>
           </h1> -->
           <h2 class="mb-5">AbstractTablemodel for uøvde</h2>
-          <p class="mb-5">Under finnes et bilde til et enkelt klassediagram av AbstractTableModel<br>
+          <p class="mb-5">Under finnes et bilde til et enkelt klassediagram av AbstractTableModel<br><br>
           <a href="svg/klassediagram.svg"><img src="img/diagram1.png"></a>
 
           <p class="mb-5">AbstractTableModel er en klasse som oppfører seg som en beholder av alle enhetene i tablemodel, på en måte. Vi kan si at AbstractTableModel er avhengig av TableModel, dette kan sees ved at den stiplede pilen går fra AbstractTableModel til TableModel.
 Klassen AbstractTableModel er abstrakt fordi den implementerer TableModel, som er et interface, uten å oppfylle hele kontrakten. Dette betyr altså at en ny spesialisering av AbstractTableModel må oppfylle resten av kontrakten for denne.</p>
 
 <div class="subheading mb-3">Tre av metodene i AbstractTableModel er abstrakte</div>
-<p class="mb-5"><div class="code"><pre>public int getRowCount();
-public int getColumnCount();
-public Object getValueAt(int row, int column);</pre></div></p>
+<p class="mb-5">
+  <div class="code">
+    <pre>public int getRowCount();<br>public int getColumnCount();<br>public Object getValueAt(int row, int column);</pre>
+  </div>
+</p>
 
 <p class="mb-5">Disse må defineres og kan gjøres slik:<br>
 En lokal Arraylist med navnene for dataradene kan benyttes. Det lokale lageret kalles cache.
-getRowCount () trenger derfor kun å returnere størrelsen på cache objektet slik:
-<div class="code"><pre>
-public int getRowCount(){<br>
-	return cache.size();<br>
-}</pre></div></p>
-<p class="mb-5">getColoumnCount() metoden returnerer hvor mange kolonner det finnes i tabellstrukturen. Som det her:<br>
-<div class="code"><pre>public int getColoumnCount(){
-return colnames.size();</pre>
-}</div></p>
+getRowCount () trenger derfor kun å returnere størrelsen på cache objektet slik:</p>
+<div class="code">
+  <pre>public int getRowCount(){<br>return cache.size();<br>}</pre>
+</div><br>
+<p class="mb-5">getColoumnCount() metoden returnerer hvor mange kolonner det finnes i tabellstrukturen. Som det her:<br></p>
+<div class="code"><pre>public int getColoumnCount(){<br>return colnames.size();</pre>}
+</div><br>
 <p class="mb-5">getValueAt() funksjonen returnerer antall kolonner og rader som det her:</p>
-<div class="code"><pre>public Object getValueAt(int row,int col){<br>
-  return data[row][col];</pre><br>
-}</div>
+<div class="code">
+  <pre>public Object getValueAt(int row,int col){<br>return data[row][col];<br>}</pre>
+</div><br>
 
 <p class="mb-5">JTable bruker disse metodene til å finne ut hvor mange felt(rader og kolonner) det er, og henter verdiene( som et type objekt) av hvert felt.  getValueAt benyttes for å hente ut antall rader og kolonner og returnerer dette.</p>
-
 <p class="mb-5">Disse to metodene danner sammen en god løsning som gir den utvidede AbstractTableModel to datastrukturer som er enkle å håndtere. Man kan da sette objektet inn i et JTable-objekt. Rammeverket bruker da getColoumnCount() og getRowCount() til å fylle ut dataen i rader og kolonner.
 Hvis det da ønskes, kan kolonne-navnene redigeres ved hjelp av å overstyre getColoumnName()-metoden. Hvis denne metoden overstyres utnytter rammeverket dette til å vise kolonnenavnene i JTable-objektet.</p>
 
 <p class="mb-5">Første linjen definerer kolonnenavnene, i dette tilfellet “user”, “password” og “age”. Den andre linjen returnerer kolonnenavnene i getColumnName metoden og setter navnene i JTable. De to kodelinjene under er de som snakkes om.</p>
 
-<div class="code"><pre>private static final String[] COLUMN_NAMES = {"User", "Password", "Age"};<br>
-public String getColumnName(int col) { return COLUMN_NAMES[col]; }</pre></div>
-</p>
+<div class="code">
+  <pre>private static final String[] COLUMN_NAMES = {"User", "Password", "Age"};<br>public String getColumnName(int col) { return COLUMN_NAMES[col]; }</pre>
+</div>
 
         </div>
       </section>
@@ -108,10 +107,16 @@ public String getColumnName(int col) { return COLUMN_NAMES[col]; }</pre></div>
         <div class="my-auto">
           <h2 class="mb-5">Abstracttablemodel for øvede</h2>
               <div class="subheading mb-3">UML-diagrammer og forklaringer</div>
+              <br>
+              <div class="subheading mb-3">Klassediagram</div>
               <a href="svg/klassediagram2.svg"><img src="img/klassediagram.png"></a>
               <p class="mb-5">MASSE TEKST HER</p>
+              <br>
+              <div class="subheading mb-3">Sekvennsdiagram</div>
               <a href="svg/sekvenns.svg"><img src="img/sekvennsdiagram.png"></a>
               <p class="mb-5">Her kan vi si et eksempel på hvordan de to metodene som er abstrake kan settes opp, og hvor de blir brukt til å finne det siste objektet i raden og kolonnen, JTable kaller først for å finne indexen på den siste elementet i raden, så kaller den for å finne indexen på kolonnen. for så å putte disse verdiene inn i getValue metoden som returnerer objektet på denne plassen. Her har vi et lite eksempel, med koden som er tatt fra delen av introduksjoen, for de som ikke er så drevene.</p>
+              <br>
+              <div class="subheading mb-3">Klassediagram over hierarkiet</div>
               <a href="svg/hirearki.svg"><img src="img/hierarki.png"></a>
               <p class="mb-5">Her har vi et diagram som viser hva AbstracTableModel arver, hvem pakker som både den og JTable ligger under, dette kan være nyttig for å orientere seg hvor disse pakkene ligger og hvordan sammenhenger og tilhørigheter.</p>
 
